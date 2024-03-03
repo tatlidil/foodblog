@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Food Blog</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <aside id="leftside"></aside>
+    <aside id="rightside"></aside>
+    <div id="app">
+        <div id="container">
+            <header>
+                <span>Food Blog</span>
+            </header>
+            <main>
+                <div class="row">
+                    <div class="col-md-3">
+                        <aside id="photos">
+                            <img :src="'images/chili' + '.jpg'" alt="White Chicken Chili" class="img-fluid">
+                        </aside>
+                    </div>
+                    <div class="col-md-9">
+                        <h2>Comments</h2>
+                        <section id="blogposts">
+                            <div class="post" v-for="(post, index) in posts" :key="index">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <img :src="'images/profile' + '.png'" alt="Profile Picture" class="profilePic img-fluid" @click="showProfile(post)">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <span class="author">{{ post.author }}</span> — 
+                                        <span class="date">{{ post.date }}</span>
+                                        <span class="reply">REPLY</span>
+                                        <p>{{ post.content }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+               
+                    </main>
+            
+            <footer>
+                &copy; Copyright FOOD BLOG
+            </footer>
+        </div>
+
+
+        <div class="profile-box" v-if="showProfileBox">
+            <span class="cross-btn" @click="hideProfile">&times;</span>
+            <h3>{{ selectedPost.author }}</h3>
+            <p>Foodie Level: {{ selectedPost.foodieLevel }}</p>
+            <p>{{ selectedPost.bio }}</p>
+            <button class="close-btn" @click="closeProfile">Close</button>
+        </div>
+    </div>
+
+     <template id="navigation-link-template">
+        <a :href="'#' + name.toLowerCase()">{{ name }}</a>
+    </template>
+    
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+     <script src="scripts.js"></script>
+</body>
+</html>
